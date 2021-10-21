@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDCCAA" representedClassName="CDCCAA" syncable="YES" codeGenerationType="class">
+        <attribute name="ccaaName" optional="YES" attributeType="String"/>
+        <attribute name="idCCAA" attributeType="String"/>
+        <relationship name="contains" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDProvince" inverseName="belongs" inverseEntity="CDProvince"/>
+    </entity>
+    <entity name="CDGASSTATION" representedClassName="CDGASSTATION" syncable="YES" codeGenerationType="class">
+        <attribute name="address" attributeType="String"/>
+        <attribute name="place" attributeType="String"/>
+        <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="timetable" attributeType="String"/>
+        <relationship name="belongsProv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDProvince" inverseName="contains" inverseEntity="CDProvince"/>
+        <relationship name="containsPrices" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDPRICES" inverseName="belongs" inverseEntity="CDPRICES"/>
+        <relationship name="containsProd" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDPRODUCT" inverseName="belongs" inverseEntity="CDPRODUCT"/>
+    </entity>
+    <entity name="CDPRICES" representedClassName="CDPRICES" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="belongs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDGASSTATION" inverseName="containsPrices" inverseEntity="CDGASSTATION"/>
+    </entity>
+    <entity name="CDPRODUCT" representedClassName="CDPRODUCT" syncable="YES" codeGenerationType="class">
+        <attribute name="idProduct" attributeType="String"/>
+        <attribute name="productName" attributeType="String"/>
+        <attribute name="shortProductName" attributeType="String"/>
+        <relationship name="belongs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDGASSTATION" inverseName="containsProd" inverseEntity="CDGASSTATION"/>
+    </entity>
+    <entity name="CDProvince" representedClassName="CDProvince" syncable="YES" codeGenerationType="class">
+        <attribute name="idProvince" attributeType="String"/>
+        <attribute name="provinceName" attributeType="String"/>
+        <relationship name="belongs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCCAA" inverseName="contains" inverseEntity="CDCCAA"/>
+        <relationship name="contains" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDGASSTATION" inverseName="belongsProv" inverseEntity="CDGASSTATION"/>
+    </entity>
+    <elements>
+        <element name="CDCCAA" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="CDGASSTATION" positionX="-63" positionY="27" width="128" height="134"/>
+        <element name="CDPRICES" positionX="-54" positionY="54" width="128" height="59"/>
+        <element name="CDPRODUCT" positionX="-54" positionY="36" width="128" height="89"/>
+        <element name="CDProvince" positionX="-54" positionY="9" width="128" height="89"/>
+    </elements>
+</model>
